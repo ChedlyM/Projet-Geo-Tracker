@@ -1,7 +1,8 @@
-#map{ height: 400px; }
+#map{ height: 430px; }
 
 .row-map{
-  background-color: rgba(255,255,255,0.94);
+  background-color: rgb(100,185,196);
+  background: linear-gradient(135deg, rgba(100,185,196,0.2) 0%,rgba(6,24,91,0.8) 100%); 
   padding: 10px 32px;
   min-height: 640px;
 }
@@ -9,15 +10,17 @@
 .heading{
   font-family: 'Fjalla One', sans-serif;
   font-size: 2.2em;
+  color: rgb(235, 219, 219);
 }
 
 .data-heading{
   font-family: 'Fjalla One', sans-serif;
-  font-size: 1.6em;
-  color: #333;
+  font-size: 1.2em;
+  color: rgb(235, 219, 219);
 }
 
 .data-entry{
   padding: 8px 0px 2px 16px;
   font-size: 1.5em;
+  color: rgb(47, 47, 221);;
 }

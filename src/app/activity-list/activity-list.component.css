@@ -1,6 +1,8 @@
 .row-runs{
-    background-color: rgba(255,255,255,0.94);
+    background-color: rgb(100,185,196);
+    background: linear-gradient(135deg, rgba(100,185,196,0.2) 0%,rgba(6,24,91,0.8) 100%); 
     padding: 10px 32px;
+    color: rgb(235, 219, 219);
   }
   
   td{
@@ -8,20 +10,20 @@
   }
   
   table>tbody>tr:hover{
-    background-color: #fff;
+    background-color: #96c3e0;
   }
   
   td > a{
-    color: #ff1744;
+    color: #fc3e64;
   }
   
   td > a:hover{
     text-decoration: none;
-    color: #ff5252;
+    color: #fc3e64;
   }
   
   hr{
-    border-color: #ddd;
+    border-color: #333;
   }
   
   .summary{
@@ -35,6 +37,9 @@
   .totals{
     display: inline;
     font-family: 'Fjalla One', sans-serif;
-    color:#333;
+    color: rgb(17, 17, 82);
     margin: 2px;
+  }
+  table{
+    color: rgb(235, 219, 219);
   }

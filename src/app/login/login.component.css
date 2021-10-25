@@ -1,0 +1,65 @@
+
+.row{
+    padding-left: 8%;
+    padding-right: 8%;
+    text-align: center;
+    
+}
+
+.form-control{
+    background-color: rgb(81, 126, 159, 0.3);
+    color: white;
+    border: none;
+    height: 35px;
+}
+
+.btn{
+    background-color: #db6015;
+    color:white;
+    font-weight: bold;
+    border: none;
+}
+
+a{
+    color: white;
+}
+h3 {
+    padding-bottom: 20px;
+    color: #f38f51;
+    font-weight: bold;
+}
+
+#body-form{
+    padding-bottom: 20px;
+    margin-top: 6%;
+}
+
+::placeholder{
+    color: white;
+}
+
+.inputinval{
+    
+    box-shadow: inset 0 0 0.4em gainsboro, 0 0 0.6em #db6015;
+}
+
+button{
+    margin-top: 20px;
+}
+
+h2{
+    color: rgb(225, 250, 189);
+    font-weight: bold;
+    transform: rotate(-7deg);
+    font-size: 45px;
+    background-color: blue;
+    width: 20%;
+    font-style: italic;
+    font-family: 'Fjalla One', sans-serif;
+    text-align: center;
+}
+
+.navaccueil{
+    margin-top:7%;
+    margin-left:10%;
+}

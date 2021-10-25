@@ -8,12 +8,16 @@ import { MapComponent } from './map/map.component';
 import { ActivityService } from './services/activity.service';
 import {RouterModule} from '@angular/router';
 import {appRoutes} from '../routes';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ActivityListComponent,
-    MapComponent
+    MapComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
