@@ -3,26 +3,29 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
 
+
 app = Flask(__name__)
 #db_config = yaml.load(open('database.yaml'))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/SIG'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345678@localhost:5432/SIG'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #db_config['uri'] 
 db = SQLAlchemy(app)
 CORS(app)
 
 class User(db.Model):
-    __tablename__ = "users"
+    __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    age = db.Column(db.String(255))
+    password = db.Column(db.String(255))
+    role = db.Column(db.String(255))
 
-    def __init__(self, name, age):
+    def __init__(self, name, password, role):
         self.name = name
-        self.age = age
+        self.password = password
+        self.role = role
     
     def __repr__(self):
-        return '%s/%s/%s' % (self.id, self.name, self.age)
+        return '%s/%s/%s/%s' % (self.id, self.name, self.password, self.role)
 
 #@app.route('/')
 #def index():
@@ -35,16 +38,17 @@ def data():
     if request.method == 'POST':
         body = request.json
         name = body['name']
-        age = body['age']
+        password = body['password']
+        role = body['role']
 
-        data = User(name, age)
+        data = User(name, password, role)
         db.session.add(data)
         db.session.commit()
 
         return jsonify({
-            'status': 'Data is posted to PostgreSQL!',
             'name': name,
-            'age': age
+            'password': password,
+            'role': role
         })
     
     # GET all data from database & sort by id
@@ -58,7 +62,8 @@ def data():
             dataDict = {
                 'id': str(data[i]).split('/')[0],
                 'name': str(data[i]).split('/')[1],
-                'age': str(data[i]).split('/')[2]
+                'password': str(data[i]).split('/')[2],
+                'role': str(data[i]).split('/')[3]
             }
             dataJson.append(dataDict)
         return jsonify(dataJson)
@@ -73,7 +78,8 @@ def onedata(id):
         dataDict = {
             'id': str(data).split('/')[0],
             'name': str(data).split('/')[1],
-            'age': str(data).split('/')[2]
+            'password': str(data).split('/')[2],
+            'role': str(data).split('/')[3],
         }
         return jsonify(dataDict)
         
@@ -88,10 +94,12 @@ def onedata(id):
     if request.method == 'PUT':
         body = request.json
         newName = body['name']
-        newAge = body['age']
+        newPassword = body['password']
+        newRole = body['role']
         editData = User.query.filter_by(id=id).first()
         editData.name = newName
-        editData.age = newAge
+        editData.password = newPassword
+        editData.role = newRole
         db.session.commit()
         return jsonify({'status': 'Data '+id+' is updated from PostgreSQL!'})
 
