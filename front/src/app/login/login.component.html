@@ -11,21 +11,21 @@
         <div class="col-md-6 offset-md-3">
             <h3>SE CONNECTER</h3>
 
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="loginCandidat()">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username">
-                        <!--<div *ngIf="username?.touched && username?.invalid" class="text-danger">
+                    <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username"
+                    [(ngModel)]="user.username">
+                        <div *ngIf="username?.touched" class="text-danger">
                             <small *ngIf="username?.errors?.required">Champ obligatoire <br></small>
-                            <small *ngIf="username?.errors?.email">Email invalide</small>
-                        </div>-->
+                        </div>
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" id="password" placeholder="Mot de passe"
-                        formControlName="mdp">
-                        <!--<div *ngIf="mdp?.touched && mdp?.invalid" class="text-danger">
-                            <small *ngIf="mdp?.errors?.required">Champ obligatoire <br></small>
-                            <small *ngIf="mdp?.errors?.minlength">Minimum 8 caractères </small>
-                        </div>-->
+                        formControlName="password" [(ngModel)]="user.password">
+                        <div *ngIf="password?.touched && password?.invalid" class="text-danger">
+                            <small *ngIf="password?.errors?.required">Champ obligatoire <br></small>
+                            <small *ngIf="password?.errors?.minlength">Minimum 8 caractères </small>
+                        </div>
                 </div>
 
                 <button type="submit" class="btn-primary">Connexion</button>
@@ -33,11 +33,5 @@
 
         </div>
 
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h6> <a href=""> Un nouveau candidat ? Créer un compte ! </a></h6>
-        </div>
     </div>
 </div>

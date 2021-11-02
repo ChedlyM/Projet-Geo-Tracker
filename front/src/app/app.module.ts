@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ActivityListComponent } from './activity-list/activity-list.component';
@@ -10,6 +11,8 @@ import {RouterModule} from '@angular/router';
 import {appRoutes} from '../routes';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UsersComponent } from './users/users.component';
+import { RunsComponent } from './runs/runs.component';
 
 @NgModule({
   declarations: [
@@ -17,11 +20,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ActivityListComponent,
     MapComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsersComponent,
+    RunsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [ActivityService],
