@@ -48,7 +48,7 @@ def gpxData():
 
         # save real time tracking
         now = datetime.now()
-        current_time = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+        current_time = now.strftime("%Y-%m-%d")#T%H:%M:%SZ
 
         data = GpxData(idtrajet, lat, long, elevation, current_time)
         db.session.add(data)
@@ -103,7 +103,7 @@ def createGPX(idtrajet=None):
         gpx_track.segments.append(gpx_segment)
 
         # Create route points:
-        trajetPoints = GpxData.query.filter_by(idtrajet=str(idtrajet))
+        trajetPoints = GpxData.query.filter_by(idtrajet=str(idtrajet))#id user/ date
         for point in trajetPoints:
             gpx_segment.points.append(
             gpxpy.gpx.GPXTrackPoint(point.lat, point.long, point.elevation))
