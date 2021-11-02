@@ -72,14 +72,14 @@ def data():
         print(data)
         dataJson = []
         for i in range(len(data)):
-            # print(str(data[i]).split('/'))
-            dataDict = {
-                'id': str(data[i]).split('/')[0],
-                'name': str(data[i]).split('/')[1],
-                'password': str(data[i]).split('/')[2],
-                'role': str(data[i]).split('/')[3]
-            }
-            dataJson.append(dataDict)
+            if (str(data[i]).split('/')[3] == "User"):
+                dataDict = {
+                    'id': str(data[i]).split('/')[0],
+                    'name': str(data[i]).split('/')[1],
+                    'password': str(data[i]).split('/')[2],
+                    'role': str(data[i]).split('/')[3]
+                }
+                dataJson.append(dataDict)
         return jsonify(dataJson)
 
 @app.route('/user/<string:id>', methods=['GET', 'DELETE', 'PUT'])
