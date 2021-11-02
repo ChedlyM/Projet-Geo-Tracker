@@ -27,9 +27,22 @@ class User(db.Model):
     def __repr__(self):
         return '%s/%s/%s/%s' % (self.id, self.name, self.password, self.role)
 
-#@app.route('/')
-#def index():
-    #return render_template('home.html')
+@app.route('/user/login' , methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        body = request.json
+        name = body['username']
+        password = body['password']
+        data = User.query.order_by(User.id).all()
+        for i in range(len(data)):
+            if((name == str(data[i]).split('/')[1]) and (password == str(data[i]).split('/')[2])):
+                return jsonify({
+                    'name': name,
+                    'password': password,
+                    'role': str(data[i]).split('/')[3]
+                })
+
+    
 
 @app.route('/user', methods=['POST', 'GET'])
 def data():
