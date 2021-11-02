@@ -2,7 +2,7 @@
     background-color: rgb(100,185,196);
     background: linear-gradient(135deg, rgba(100,185,196,0.2) 0%,rgba(6,24,91,0.8) 100%); 
     padding: 10px 32px;
-    color: rgb(235, 219, 219);
+    color: rgb(46, 45, 45);
   }
   
   td{
@@ -14,18 +14,15 @@
   }
   
   td > a{
-    color: #fc3e64;
+    color: #a8470b;
+    text-decoration: none;
   }
   
   td > a:hover{
     text-decoration: none;
-    color: #fc3e64;
+    color: #a8470b;
   }
-  
-  hr{
-    border-color: #333;
-  }
-  
+    
   .summary{
     font-size: 1.4em;
   }
@@ -41,5 +38,5 @@
     margin: 2px;
   }
   table{
-    color: rgb(235, 219, 219);
+    color: rgb(46, 45, 45);
   }

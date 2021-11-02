@@ -1,16 +1,11 @@
 .logo{
-    color:rgb(225, 250, 189);
-    font-size: 45px;
-    font-family: 'Fjalla One', sans-serif;
-    font-style: italic;
-    background-color: blue;
-    padding: 5px 9px;
-    font-weight: bold;
-    transform: rotate(-7deg);
-    text-align: center;
-    width: 100%;
-    margin-top:7%;
-    margin-left:10%;
+  color: rgb(46, 45, 45);
+  font-weight: bold;
+  font-size: 45px;
+  width: 20%;
+  font-style: italic;
+  font-family: 'Fjalla One', sans-serif;
+  text-align: center;
   }
   
   .navbar-custom{

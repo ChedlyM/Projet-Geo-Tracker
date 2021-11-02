@@ -27,9 +27,10 @@ export class LoginComponent implements OnInit {
   loginCandidat(){
     
 
-    this.http.post<any>("https://localhost:5000/user",this.user).subscribe(
+    this.http.post<any>("http://127.0.0.1:5000/user/login",this.user).subscribe(
       data => {
-        
+        this.user=data;
+        console.log(this.user);
       },
       err => {
         this.router.navigate(['/'])

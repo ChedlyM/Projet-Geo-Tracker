@@ -30,7 +30,7 @@
             <div class="row row-cols-1 row-cols-md-4">
                 <div *ngFor="let user of users" class="col mb-4">
                   <div class="card">
-                      <h5 class="card-title"> <span class="refer"> <i class="fas fa-star-half-alt"></i> {{users.name}} </span>
+                      <h5 class="card-title"> <span class="refer"> {{user.name}} </span>
                         <span> <a><button [routerLink]="['/Runs', users.id]"><i class="fas fa-eye"></i></button></a> </span>
                       </h5>
                   </div>

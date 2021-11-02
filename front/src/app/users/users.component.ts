@@ -15,6 +15,8 @@ export class UsersComponent implements OnInit {
         .subscribe(
           (result) => {
             this.users = result;
+            console.log(this.users);
+            
           },
           (error) => { }
         )
