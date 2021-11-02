@@ -1,23 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 body{
     font-family: 'Jaldi', sans-serif;
-    background-image: url("./assets/img/bg-bell.jpg");
+    background-color: white;
     min-width: 100%;
     min-height: 100%;
     position: absolute;
     background-position: center;
     background-attachment: fixed;
   }
-  
-  .layer {
-    background: rgb(100,185,196);
-    background: linear-gradient(135deg, rgba(100,185,196,0.2) 0%,rgba(6,24,91,0.8) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    min-height: 100%;
-    min-width: 100%;
-    background-position: center;
-    background-attachment: fixed;
-    position: absolute;
-  }
+
   
   .app-row{
     background-color:#fff;
