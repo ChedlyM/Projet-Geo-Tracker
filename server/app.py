@@ -37,6 +37,7 @@ def login():
         for i in range(len(data)):
             if((name == str(data[i]).split('/')[1]) and (password == str(data[i]).split('/')[2])):
                 return jsonify({
+                    'id': str(data[i]).split('/')[0],
                     'name': name,
                     'password': password,
                     'role': str(data[i]).split('/')[3]
