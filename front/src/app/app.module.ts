@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { RunsComponent } from './runs/runs.component';
+import { ClientComponent } from './client/client.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RunsComponent } from './runs/runs.component';
     LoginComponent,
     DashboardComponent,
     UsersComponent,
-    RunsComponent
+    RunsComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,
