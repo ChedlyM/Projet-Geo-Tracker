@@ -4,9 +4,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ActivityListComponent } from './activity-list/activity-list.component';
 import { MapComponent } from './map/map.component';
-import { ActivityService } from './services/activity.service';
 import {RouterModule} from '@angular/router';
 import {appRoutes} from '../routes';
 import { LoginComponent } from './login/login.component';
@@ -17,7 +15,6 @@ import { ClientComponent } from './client/client.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ActivityListComponent,
     MapComponent,
     LoginComponent,
     DashboardComponent,
@@ -32,7 +29,7 @@ import { ClientComponent } from './client/client.component';
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ActivityService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
