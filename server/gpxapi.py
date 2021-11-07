@@ -10,7 +10,7 @@ import gpxpy.gpx
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345678@localhost:5432/SIG'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1920@localhost:54321/SIG'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
