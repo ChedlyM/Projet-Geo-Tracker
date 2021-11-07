@@ -27,7 +27,7 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-    path: "Run",
+    path: "Run/:date/:id",
     component: MapComponent,
     canActivate:[AuthGuard]
   }

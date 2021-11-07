@@ -364,9 +364,13 @@ def gpxUserData(idUser=None):
         data = GpxData.query.filter_by(idUser=str(idUser))
         dataJson = []
         dataDict = {}
-        for line in data:  # loop through the user data
+        d = list()
+        for line in data:
+            if line.time not in d:
+                d.append(line.time)
+        for x in d:  # loop through the user data
             dataDict = {
-                'time': line.time
+                'time': x
             }
             dataJson.append(dataDict)
         return jsonify(dataJson)

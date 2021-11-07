@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MapComponent implements OnInit {
  role : any;
-  constructor(private _mapService: MapService, private _route: ActivatedRoute,private router: Router) { }
+  constructor(private _mapService: MapService, private _route: ActivatedRoute,private router: Router, private _Activatedroute: ActivatedRoute) { }
 
   activity: any;
   activityName: string;
@@ -19,10 +19,15 @@ export class MapComponent implements OnInit {
   activityDate: Date;
   activityDistance: number;
   gpx: any;
+  id : any;
+  date : any;
 
 
   ngOnInit(): void {
     this.role = localStorage.getItem("role")
+    this.id = this._Activatedroute.snapshot.paramMap.get("id");
+    this.date = this._Activatedroute.snapshot.paramMap.get("date");
+    console.log(this.id, this.date)
     if(this.role != null)
     {
     if (this.role == "Client") {
