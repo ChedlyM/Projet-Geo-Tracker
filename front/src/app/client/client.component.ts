@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
+  role : any;
   private centroid: L.LatLngExpression = [35.96099, 9.68194];
   c : any = {}
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
   
   private async initMap(): Promise<void> {
      var map = L.map('map', {
@@ -44,7 +46,7 @@ export class ClientComponent implements OnInit {
   }
 
   addClient(lat:any, long:any){
-    this.c.idUser =1;
+    this.c.idUser =localStorage.getItem("id");
     this.c.lat= lat;
     this.c.long= long;
     console.log(this.c)
@@ -59,8 +61,17 @@ export class ClientComponent implements OnInit {
   }
 
 ngOnInit(){
-    this.initMap()
-
+  this.role = localStorage.getItem("role")
+  if(this.role != null)
+  {
+    if (this.role == "ADMIN") {
+      this.router.navigate(['/Clients'])
+    }
+    else 
+    this.initMap();
+  }
+  else 
+  this.router.navigate(['/'])
 
   }
 

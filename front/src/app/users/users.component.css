@@ -53,3 +53,19 @@ button{
     color: black;
     border: none;
 }
+
+#ajoutClient{
+    background-color: #a8470b;
+    color: white;
+    font-weight: bold;
+}
+
+.value{
+    padding-right: 15px;
+}
+
+#popbtn{
+    background-color: #a8470b;
+    color: white;
+    font-weight: bold;
+}

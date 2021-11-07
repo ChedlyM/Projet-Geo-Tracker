@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { UsersComponent } from './users/users.component';
+import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {
     path: "",
@@ -12,19 +13,23 @@ const routes: Routes = [
   },
   {
     path: "Routes/:id",
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: "Clients",
-    component: UsersComponent
+    component: UsersComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: "Client",
-    component: ClientComponent
+    component: ClientComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: "Run",
-    component: MapComponent
+    component: MapComponent,
+    canActivate:[AuthGuard]
   }
   
 ];

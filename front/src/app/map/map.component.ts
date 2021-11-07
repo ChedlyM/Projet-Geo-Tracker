@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MapService } from '../services/map.service';
 import {IActivity} from '../shared/activity.model';
 import { ActivatedRoute } from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -10,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-
-  constructor(private _mapService: MapService, private _route: ActivatedRoute) { }
+ role : any;
+  constructor(private _mapService: MapService, private _route: ActivatedRoute,private router: Router) { }
 
   activity: any;
   activityName: string;
@@ -22,7 +22,18 @@ export class MapComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.role = localStorage.getItem("role")
+    if(this.role != null)
+    {
+    if (this.role == "Client") {
+      this.router.navigate(['/Client'])
+    }
+    else 
+    {
     this.activity = this._mapService.getActivity( +this._route.snapshot.params['id'])
+    }
+  }
+  else this.router.navigate(['/']);
   }
 
   ngAfterViewInit() {

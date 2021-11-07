@@ -7,10 +7,11 @@
         <div class="col-md-6 offset-md-3">
             <h3>Liste des utilisateurs</h3>
         </div>
-
-        <button type="button" class="btn btn-primary" (click)="openModal()" data-toggle="modal" data-target="#myModal">
+       <div class="col-md-3 right">
+        <button type="button" class="btn btn-primary" id="ajoutClient" (click)="openModal()" data-toggle="modal" data-target="#myModal">
             Ajouter Client
           </button>
+        </div>
           
           <!-- Modal -->
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -22,21 +23,18 @@
                 <div class="modal-body">
                     <form method="POST">
                         <div class="form-row">
-                            <div class="name">Nom</div>
                             <div class="value">
-                                <input class="input--style-6" type="text" name="name" [(ngModel)]="myuser.name">
+                                <input class="form-control" type="text" name="name" [(ngModel)]="myuser.name" placeholder="username">
                             </div>
-                        </div>                                                                                      
-                        <div class="form-row">
-                            <div class="name">Mot de passe</div>
+                        
                             <div class="value">
-                                <input class="input--style-6" type="password" name="password" [(ngModel)]="myuser.password">
+                                <input class="form-control" type="password" name="password" [(ngModel)]="myuser.password" placeholder="Mot de passe">
                             </div>
                         </div>                           
                     </form>
                 </div>
                 <div class="modal-footer">
-                  <button class="btn btn-primary" type="submit" value="Ajouter" (click)="addClient()">Confirmer</button>
+                  <button class="btn btn-primary" id ="popbtn" type="submit" value="Ajouter" (click)="addClient()">Confirmer</button>
                 </div>
               </div>
             </div>

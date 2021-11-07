@@ -8,11 +8,20 @@ declare var $ : any;
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  role : any;
   public users: any[] = []
   myuser:any={};
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem("role")
+    if (this.role != null)
+    {
+    if (this.role == "Client") {
+      this.router.navigate(['/Client'])
+    }
+    else 
+    {
     this.http.get<any>("http://localhost:5000/user")
         .subscribe(
           (result) => {
@@ -22,6 +31,9 @@ export class UsersComponent implements OnInit {
           },
           (error) => { }
         )
+    }
+  }
+  else this.router.navigate(['/'])
   }
   
 
