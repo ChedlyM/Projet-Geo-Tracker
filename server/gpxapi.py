@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from datetime import datetime, time
 
@@ -10,12 +11,13 @@ import gpxpy.gpx
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1920@localhost:54321/SIG'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345678@localhost:5432/SIG'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 CORS(app)
-
+#cors = CORS(app, resources={r"/gpxData": {"origins": "*"}})
+#app.config['CORS_HEADERS'] = 'Content-Type'
 
 class User(db.Model):
     __tablename__ = "user"
@@ -77,7 +79,7 @@ def data():
         print(data)
         dataJson = []
         for i in range(len(data)):
-            if (str(data[i]).split('/')[3] == "User"):
+            if (str(data[i]).split('/')[3] == "Client"):
                 dataDict = {
                     'id': str(data[i]).split('/')[0],
                     'name': str(data[i]).split('/')[1],
@@ -249,6 +251,7 @@ class GpxData(db.Model):
 
 
 @app.route('/gpxdata', methods=['POST', 'GET'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def gpxData():
 
     # save position in the BD

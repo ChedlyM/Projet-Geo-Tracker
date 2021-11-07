@@ -8,6 +8,40 @@
             <h3>Liste des utilisateurs</h3>
         </div>
 
+        <button type="button" class="btn btn-primary" (click)="openModal()" data-toggle="modal" data-target="#myModal">
+            Ajouter Client
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="myModalLabel">Ajouter Client</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        <div class="form-row">
+                            <div class="name">Nom</div>
+                            <div class="value">
+                                <input class="input--style-6" type="text" name="name" [(ngModel)]="myuser.name">
+                            </div>
+                        </div>                                                                                      
+                        <div class="form-row">
+                            <div class="name">Mot de passe</div>
+                            <div class="value">
+                                <input class="input--style-6" type="password" name="password" [(ngModel)]="myuser.password">
+                            </div>
+                        </div>                           
+                    </form>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" type="submit" value="Ajouter" (click)="addClient()">Confirmer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         
             <!--<table class="table table-borderless">
                 <thead>
@@ -25,8 +59,7 @@
                     </tr>
     
                 </tbody>
-            </table>-->
-
+            </table>-->         
             <div class="row row-cols-1 row-cols-md-4">
                 <div *ngFor="let user of users" class="col mb-4">
                   <div class="card">
@@ -41,3 +74,4 @@
     </div>
 
 </div>
+

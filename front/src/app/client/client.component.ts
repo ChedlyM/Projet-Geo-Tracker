@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -7,9 +8,10 @@ import * as L from 'leaflet';
 })
 export class ClientComponent implements OnInit {
   private centroid: L.LatLngExpression = [35.96099, 9.68194];
-  constructor() { }
+  c : any = {}
+  constructor(private http: HttpClient) { }
   
-  private initMap(): void {
+  private async initMap(): Promise<void> {
      var map = L.map('map', {
       center: this.centroid,
       zoom: 2
@@ -23,29 +25,41 @@ export class ClientComponent implements OnInit {
     tiles.addTo(map);
     /*var marker = L.marker([36.836893, 10.235563]).addTo(map);
     var marker2 = L.marker([36.899383, 10.190791]).addTo(map);*/
-
-    var tid = setTimeout(loopCoords, 2000)
-    function loopCoords() {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        let lat = position.coords.latitude;
-        let long = position.coords.longitude;
+    var lat, long : any
+    navigator.geolocation.watchPosition(function (position) {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+      var marker = L.marker([lat, long]).addTo(map);
+    });
+    this.addClient(lat,long)
+    while(true){
+      await new Promise(f => setTimeout(f, 5000));
+      navigator.geolocation.watchPosition(function (position) {
+        lat = position.coords.latitude;
+        long = position.coords.longitude;
+        var marker = L.marker([lat, long]).addTo(map);
       });
-      setTimeout(function () {
-        navigator.geolocation.watchPosition(function (position) {
-          let lat = position.coords.latitude;
-          let long = position.coords.longitude;
-          console.log("Client : " + lat + "    " + long);
-          
-          var marker = L.marker([lat, long]).addTo(map);
-        });
-      }, 3000)
-      tid = setTimeout(loopCoords, 2000)
-      var i = 0;
-    };
+      this.addClient(lat,long)
+    }
   }
 
-  ngOnInit(): void {
-    this.initMap();
+  addClient(lat:any, long:any){
+    this.c.idUser =1;
+    this.c.lat= lat;
+    this.c.long= long;
+    console.log(this.c)
+    this.http.post("http://127.0.0.1:5000/gpxdata",this.c).subscribe(
+      (data)=>{
+        console.log("Ajouté avec succès");
+      },
+      (err)=>{
+        console.log(err);
+      }
+    );
+  }
+
+ngOnInit(){
+    this.initMap()
 
 
   }
