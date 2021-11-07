@@ -12,7 +12,6 @@ import {appRoutes} from '../routes';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
-import { RunsComponent } from './runs/runs.component';
 import { ClientComponent } from './client/client.component';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { ClientComponent } from './client/client.component';
     LoginComponent,
     DashboardComponent,
     UsersComponent,
-    RunsComponent,
     ClientComponent
   ],
   imports: [

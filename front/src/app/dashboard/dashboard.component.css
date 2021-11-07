@@ -38,3 +38,46 @@
     height: 500px;
     background-color: white;
   }
+
+  .row-runs{
+    background-color: rgb(100,185,196);
+    background: linear-gradient(135deg, rgba(100,185,196,0.2) 0%,rgba(6,24,91,0.8) 100%); 
+    padding: 10px 32px;
+    color: rgb(46, 45, 45);
+  }
+  
+  td{
+    font-size: 1.4em;
+  }
+  
+  table>tbody>tr:hover{
+    background-color: #96c3e0;
+  }
+  
+  td > a{
+    color: #a8470b;
+    text-decoration: none;
+  }
+  
+  td > a:hover{
+    text-decoration: none;
+    color: #a8470b;
+  }
+    
+  .summary{
+    font-size: 1.4em;
+  }
+  
+  .heading{
+    font-family: 'Fjalla One', sans-serif;
+  }
+  
+  .totals{
+    display: inline;
+    font-family: 'Fjalla One', sans-serif;
+    color: rgb(17, 17, 82);
+    margin: 2px;
+  }
+  table{
+    color: rgb(46, 45, 45);
+  }

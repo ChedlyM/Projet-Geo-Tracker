@@ -10,7 +10,7 @@ import gpxpy.gpx
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/SIG'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345678@localhost:5432/SIG'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -236,18 +236,14 @@ def onedataActivity(id):
 class GpxData(db.Model):
     __tablename__ = "gpxdata"
     id = db.Column(db.Integer, primary_key=True)
-    idtrajet = db.Column(db.Integer)
     lat = db.Column(db.Float)
     long = db.Column(db.Float)
-    elevation = db.Column(db.Float)
     time = db.Column(db.String(255))
     idUser = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __init__(self, idtrajet, lat, long, elevation, time, idUser):
-        self.idtrajet = idtrajet
+    def __init__(self, lat, long, time, idUser):
         self.lat = lat
         self.long = long
-        self.elevation = elevation
         self.time = time
         self.idUser = idUser
 
@@ -255,29 +251,24 @@ class GpxData(db.Model):
 @app.route('/gpxdata', methods=['POST', 'GET'])
 def gpxData():
 
-    # POST a data to database
+    # save position in the BD
     if request.method == 'POST':
         body = request.json
-        idtrajet = body['idtrajet']
         lat = body['lat']
         long = body['long']
-        elevation = body['elevation']
         idUser = body['idUser']
 
         # save real time tracking
         now = datetime.now()
-        current_time = now.strftime("%Y-%m-%d")  # T%H:%M:%SZ
-
-        data = GpxData(idtrajet, lat, long, elevation, current_time, idUser)
+        current_time = now.strftime("%Y-%m-%d")  
+        data = GpxData(lat, long, current_time, idUser)
         db.session.add(data)
         db.session.commit()
 
         return jsonify({
             'status': 'Data is posted to PostgreSQL!',
-            'idtrajet': idtrajet,
             'lat': lat,
             'long': long,
-            'elevation': elevation,
             'time': current_time,
             'idUser': idUser
         })
@@ -290,10 +281,8 @@ def gpxData():
         for line in data:  # loop through the user data
             dataDict = {
                 'id': line.id,
-                'idtrajet': line.idtrajet,
                 'lat': line.lat,
                 'long': line.long,
-                'elevation': line.elevation,
                 'time': line.time,
                 'idUser': line.idUser
             }
@@ -313,62 +302,18 @@ def getLastUserPos(idUser=None):
         dataDict = {}
         dataDict = {
             'lat': data[0].lat,
-            'long': data[0].long,
-            'elevation': data[0].elevation
+            'long': data[0].long
         }
         dataJson.append(dataDict)
         return jsonify(dataJson)
 
-
-"""
-# API for creating gpx file (POST : gpxfile/id ==> id.gpx)
-@app.route('/gpxfile/<idtrajet>', methods=['POST'])
-def createGPX(idtrajet=None):
-
-    # POST a data to database
-    if request.method == 'POST':
-        
-
-        # Creating a new file:
-        # --------------------
-
-        gpx = gpxpy.gpx.GPX()
-
-        # Create first track in our GPX:
-        gpx_track = gpxpy.gpx.GPXTrack()
-        gpx.tracks.append(gpx_track)
-
-        # Create first segment in our GPX track:
-        gpx_segment = gpxpy.gpx.GPXTrackSegment()
-        gpx_track.segments.append(gpx_segment)
-
-        # Create route points:
-        trajetPoints = GpxData.query.filter_by(idtrajet=str(idtrajet))#id user/ date
-        for point in trajetPoints:
-            gpx_segment.points.append(
-            gpxpy.gpx.GPXTrackPoint(point.lat, point.long, point.elevation))
-
-        # You can add routes and waypoints, too...
-
-        print('Created GPX:', gpx.to_xml())
-
-        # Write gpx file
-        filename = "./assets/gpx/" + str(idtrajet) + ".gpx"
-        outF = open(filename, "w")
-        outF.write(gpx.to_xml())
-        outF.close()
-
-        return jsonify({
-            'status': 'GPX file created successfully!'
-        })
-"""
 
 
 # API for creating gpx file (POST : gpxfile/date/idUser ==> date_idUser.gpx)
 @app.route('/gpxfile/<date>/<idUser>', methods=['POST'])
 def createGPX(date=None, idUser=None):
 
-    # POST a data to database
+    # generer gpx file
     if request.method == 'POST':
 
         # Creating a new file:
@@ -389,7 +334,7 @@ def createGPX(date=None, idUser=None):
             time=str(date), idUser=idUser)  # id user/ date
         for point in trajetPoints:
             gpx_segment.points.append(
-                gpxpy.gpx.GPXTrackPoint(point.lat, point.long, point.elevation))
+                gpxpy.gpx.GPXTrackPoint(point.lat, point.long))
 
         # You can add routes and waypoints, too...
 
@@ -411,14 +356,13 @@ def createGPX(date=None, idUser=None):
 @app.route('/gpxuserdata/<idUser>', methods=['GET'])
 def gpxUserData(idUser=None):
 
-    # GET all data from database & sort by id
+    # GET  dates by userId
     if request.method == 'GET':
         data = GpxData.query.filter_by(idUser=str(idUser))
         dataJson = []
         dataDict = {}
         for line in data:  # loop through the user data
             dataDict = {
-                'idtrajet': line.idtrajet,
                 'time': line.time
             }
             dataJson.append(dataDict)
