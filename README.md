@@ -36,6 +36,12 @@ Before running the project you will need to install the following dependencies :
 - [Python](https://www.anaconda.com/)
 - [PostgreSQL](https://www.postgresql.org/)
 
+Before running the Angular project, run the following command on the frontend Folder :
+```sh
+npm install
+```
+This will install all the dependencies related to the frontend part of the project
+
 ## Database creation
 Inside the Server Folder, there is a Databasedumps Folder where you can find the SQL requests leading to the tables creation.
 Those requests will be used on PostgreSQL for Database creation.
@@ -53,7 +59,6 @@ flask run
 Start the Angular project with
 
 ```sh
-npm install
 ng serve
 ```
 Check out the home page at http://localhost:4200
