@@ -22,7 +22,6 @@ Our project uses the following technologies :
 
 - [Angular](https://angular.io/)
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
-- [Mapbox](https://www.mapbox.com/)
 - [Leaflet](https://leafletjs.com/)
 - [OpenStreetMap](https://www.openstreetmap.org/)
 - [Bootstrap](https://getbootstrap.com/)
@@ -62,4 +61,3 @@ Start the Angular project with
 ng serve
 ```
 Check out the home page at http://localhost:4200
-
