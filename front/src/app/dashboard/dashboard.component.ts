@@ -10,7 +10,10 @@ import * as L from 'leaflet';
 export class DashboardComponent implements OnInit {
   role : any;
   id : any
-  days : any 
+  days : any
+  lat : any
+  long : any
+  pos : any [] = []   
   title = 'GEOTRACKER';
   private centroid: L.LatLngExpression = [35.96099, 9.68194];
   constructor(private router: Router, private _Activatedroute: ActivatedRoute, private http: HttpClient) { }
@@ -26,7 +29,16 @@ export class DashboardComponent implements OnInit {
     });
 
     tiles.addTo(map);
-    var marker = L.marker([36.836893, 10.235563]).addTo(map);
+    this.http.get<any>("http://127.0.0.1:5000/lastuserpos/"+ this.id)
+        .subscribe(
+          (result) => {
+            this.pos = result
+            //console.log(this.pos[0].lat)
+            var marker = L.marker([this.pos[0].lat, this.pos[0].long]).addTo(map);          
+          },
+          (error) => { }
+        )
+    //var marker = L.marker([this.lat, this.long]).addTo(map);
   }
   generer_gpx(date:any){
     this.http.post("http://127.0.0.1:5000/gpxfile/" + date + "/" + this.id, null).subscribe(
@@ -43,7 +55,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initMap();
     
     this.id = this._Activatedroute.snapshot.paramMap.get("id");
     this.role = localStorage.getItem("role")
@@ -62,6 +73,7 @@ export class DashboardComponent implements OnInit {
           },
           (error) => { }
         )
+        this.initMap();
     }
   }
   else this.router.navigate(['/'])
