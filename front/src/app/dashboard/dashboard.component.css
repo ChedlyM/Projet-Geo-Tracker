@@ -1,11 +1,11 @@
 .logo{
-  color: rgb(46, 45, 45);
+  color: rgba(6,24,91,0.8);
   font-weight: bold;
   font-size: 45px;
   width: 20%;
   font-style: italic;
   font-family: 'Fjalla One', sans-serif;
-  text-align: center;
+  text-align: left;
   }
   
   .navbar-custom{
@@ -17,19 +17,7 @@
     height:100%;
     width: 60%;
   }
-  
-  #topRow{
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-  }
-  
-  #btmRow{
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    padding-bottom: 8px;
-    margin-bottom: 30px;
-  }
-  
+   
   .map-container{
     height: 500px;
   }
@@ -70,6 +58,8 @@
   
   .heading{
     font-family: 'Fjalla One', sans-serif;
+    color: rgba(6,24,91,0.8);
+    padding-top: 25px;
   }
   
   .totals{
@@ -79,5 +69,31 @@
     margin: 2px;
   }
   table{
-    color: rgb(46, 45, 45);
+    color: rgba(6,24,91,0.8);
+    font-family: 'Fjalla One', sans-serif;
+    font-weight: italic;
   }
+  .btnfas{
+    background-color: transparent;
+    color: white;
+    border: none;
+  }
+td {
+  border-bottom: 1px solid rgb(241, 238, 241);
+}
+a{
+  padding-left: 50%;
+}
+
+.map-container{
+  position: relative;
+  height: 350px;
+  width: 90%;
+  padding-left: 50px;
+  padding-bottom: 50px;
+
+}
+#map {
+  height: 100%;
+}
+

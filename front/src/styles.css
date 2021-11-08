@@ -7,10 +7,10 @@ body{
     position: absolute;
     background-position: center;
     background-attachment: fixed;
-    background-color: rgb(250, 224, 185);
+    background-color: rgb(248, 227, 196);
   }
 
   
   .app-row{
-    background-color:rgb(250, 224, 185);
+    background-color:rgb(248, 227, 196);
   }

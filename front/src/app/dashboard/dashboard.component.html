@@ -1,24 +1,28 @@
 <div class="container">
-    <nav id ="" class="navbar navbar-custom">
+    <nav class="navbar">
       <a class="navbar-brand" [routerLink] ="['/']"><p class="logo">{{ title }}</p></a>
     </nav>
     <div class="container">
       <div class="row row-runs">
         <h2 class="heading">Mes chemins</h2>
-        
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Date</th>
-            </tr>
-          </thead>
+        <div class="col-md-4">
+        <table class="table">
+          
           <tbody>
             <tr *ngFor="let day of days">
-              <td>{{day.time}}</td>
-              <td><a><button (click)="generer_gpx(day.time)"><i class="fas fa-eye"></i></button></a></td>
+              <td>{{day.time}} 
+              <a><button class="btnfas" (click)="generer_gpx(day.time)"><i class="fas fa-eye"></i></button></a></td>
           </tr>
           </tbody>
         </table>
       </div>
+      <div class="col-md-8">
+        <div class="map-container">
+          <div id="map"></div>
+      </div>
+      </div>
+      </div>
     </div>
   </div>
+
+  
