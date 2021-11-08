@@ -21,11 +21,11 @@ export class MapService {
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://www.osm.org">OpenStreetMap</a>'
     }).addTo(map);  
-    //var gpxLayer = omnivore.gpx('./assets/gpx/1.gpx').addTo(map);
-    /*var gpx = './assets/gpx/2021-11-07_3.gpx';
+    //var gpxLayer = omnivore.gpx('./assets/gpx/2021-11-08_4.gpx').addTo(map);
+    var gpx = './assets/gpx/2021-11-08_4.gpx';
     new L.GPX(gpx, {async: true}).on('loaded', function(e) {
       map.fitBounds(e.target.getBounds());
-    }).addTo(map);*/
+    }).addTo(map);
   }
 
 

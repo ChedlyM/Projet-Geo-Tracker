@@ -375,6 +375,22 @@ def gpxUserData(idUser=None):
             dataJson.append(dataDict)
         return jsonify(dataJson)
 
+@app.route('/gpxPoints/<date>/<idUser>', methods=['GET'])
+def getPoints(date=None,idUser=None):
+    dataJson = []
+    dataDict = {}
+    # GET all data from database & sort by id
+    if request.method == 'GET':
+        trajetPoints = GpxData.query.filter_by(time=str(date), idUser=idUser)
+       
+        for point in trajetPoints:
+            dataDict = {
+            'lat': point.lat,
+            'long': point.long
+            }
+            dataJson.append(dataDict)
+    return jsonify(dataJson)
+
 
 if __name__ == '__main__':
     app.debug = True
