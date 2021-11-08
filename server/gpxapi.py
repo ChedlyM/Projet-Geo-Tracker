@@ -344,7 +344,7 @@ def createGPX(date=None, idUser=None):
         print('Created GPX:', gpx.to_xml())
 
         # Write gpx file
-        filename = "./assets/gpx/" + str(date) + "_" + str(idUser) + ".gpx"
+        filename = "../front/src/assets/" + str(date) + "_" + str(idUser) + ".gpx"
         outF = open(filename, "w")
         outF.write(gpx.to_xml())
         outF.close()
